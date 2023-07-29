@@ -7,8 +7,15 @@ namespace ContosoPizza.Pages
 {
     public class PizzaListModel : PageModel
 {
+    //manipulador
+    public IActionResult OnPostDelete (int id)
+    {
+        _service.DeletePizza(id);
+        return RedirectToAction("Get");
+    }
     private readonly PizzaService _service;
     public IList<Pizza> PizzaList { get;set; } = default!;
+    //adicionar prpriedade
     [BindProperty]
     public Pizza NewPizza {get; set; } =default!;
     public PizzaListModel(PizzaService service)
@@ -20,7 +27,7 @@ namespace ContosoPizza.Pages
     {
         PizzaList = _service.GetPizzas();
     }
-
+//adicionar lista
     public IActionResult OnPost()
     {
         if( !ModelState.IsValid || NewPizza ==null)
