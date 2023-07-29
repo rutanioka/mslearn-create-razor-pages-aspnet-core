@@ -20,3 +20,4 @@ namespace ContosoPizza.Pages
         PizzaList = _service.GetPizzas();
     }
 }
+}
